@@ -2,24 +2,31 @@ package me.alex.engine
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
+import com.dylanc.viewbinding.base.ViewBindingUtil
+import java.lang.reflect.InvocationTargetException
+import java.lang.reflect.Method
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
 
 
-abstract class BaseFragment<B : ViewDataBinding>(contentLayoutId: Int = 0) :
-    Fragment(contentLayoutId) {
-    lateinit var binding: B
+abstract class BaseFragment<VB : ViewBinding> : Fragment() {
+    private var mBinding: VB? = null
+    private val binding: VB get() = mBinding!!
 
     protected abstract fun initView()
     protected abstract fun initData()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding = DataBindingUtil.bind(view)!!
-        val baseActivity = (requireActivity() as? BaseActivity<*>)
-        baseActivity?.onBackPressed(this::onBackPressed)
-
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        mBinding = ViewBindingUtil.inflateWithGeneric(this, inflater, container, false)
         try {
             initView()
             initData()
@@ -27,10 +34,14 @@ abstract class BaseFragment<B : ViewDataBinding>(contentLayoutId: Int = 0) :
             Log.e("Engine", "Initializing failure")
             e.printStackTrace()
         }
+        return binding.root
     }
 
-    open fun onBackPressed(): Boolean {
-        return false
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mBinding?.let {
+            mBinding = null
+        }
     }
 
 }

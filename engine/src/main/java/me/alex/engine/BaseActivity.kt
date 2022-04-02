@@ -1,29 +1,38 @@
 package me.alex.engine
 
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
-import kotlin.reflect.KFunction0
+import androidx.viewbinding.ViewBinding
+import com.dylanc.viewbinding.base.ViewBindingUtil
+import java.lang.reflect.InvocationTargetException
+import java.lang.reflect.Method
+import java.lang.reflect.ParameterizedType
+import java.lang.reflect.Type
 
 
-abstract class BaseActivity<B : ViewDataBinding>(contentLayoutId: Int = 0) :
-    AppCompatActivity(contentLayoutId) {
+abstract class BaseActivity<B : ViewBinding> : AppCompatActivity() {
     private val onBackPressInterceptors = ArrayList<() -> Boolean>()
 
-    lateinit var binding: B
+    lateinit var mBinding: B
     lateinit var rootView: View
 
-    override fun setContentView(layoutResId: Int) {
-        rootView = layoutInflater.inflate(layoutResId, null)
-        setContentView(rootView)
-        binding = DataBindingUtil.bind(rootView)!!
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        initVB()
         try {
             initView()
             initData()
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun initVB() {
+        mBinding = ViewBindingUtil.inflateWithGeneric(this, layoutInflater)
+        setContentView(mBinding.root)
     }
 
     protected abstract fun initView()
