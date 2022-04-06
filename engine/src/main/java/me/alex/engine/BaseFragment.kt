@@ -17,6 +17,7 @@ import java.lang.reflect.Type
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     private var mBinding: VB? = null
     private val binding: VB get() = mBinding!!
+    private lateinit var me: BaseActivity<*>
 
     protected abstract fun initView()
     protected abstract fun initData()
@@ -28,6 +29,7 @@ abstract class BaseFragment<VB : ViewBinding> : Fragment() {
     ): View? {
         mBinding = ViewBindingUtil.inflateWithGeneric(this, inflater, container, false)
         try {
+            me= activity as BaseActivity<*>
             initView()
             initData()
         } catch (e: Exception) {
