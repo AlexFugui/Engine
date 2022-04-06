@@ -1,4 +1,4 @@
-package me.alex.engine
+package me.alex.engine.baseUI
 
 import android.os.Bundle
 import android.util.Log
@@ -8,10 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.dylanc.viewbinding.base.ViewBindingUtil
-import java.lang.reflect.InvocationTargetException
-import java.lang.reflect.Method
-import java.lang.reflect.ParameterizedType
-import java.lang.reflect.Type
 
 
 abstract class BaseFragment<VB : ViewBinding> : Fragment() {

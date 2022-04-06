@@ -1,4 +1,4 @@
-package me.alex.engine
+package me.alex.engine.baseUI
 
 import android.content.Context
 import android.os.Bundle
@@ -9,9 +9,8 @@ import com.dylanc.viewbinding.base.ViewBindingUtil
 
 
 abstract class BaseActivity<B : ViewBinding> : AppCompatActivity() {
-    private lateinit var mBinding: B
-    private lateinit var rootView: View
-    private lateinit var me: Context
+    lateinit var mBinding: B
+    lateinit var me: Context
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

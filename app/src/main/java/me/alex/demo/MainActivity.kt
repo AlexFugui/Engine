@@ -1,7 +1,7 @@
 package me.alex.demo
 
 import me.alex.demo.databinding.ActivityMainBinding
-import me.alex.engine.BaseActivity
+import me.alex.engine.baseUI.BaseActivity
 
 class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun initView() {
