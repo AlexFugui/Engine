@@ -1,7 +1,7 @@
 package me.alex.demo
 
-import me.alex.demo.databinding.FragmentD2Binding
-import me.alex.engine.base.BaseFragment
+import me.alex.engine.base.BaseApp
+import me.alex.engine.log.LOG
 
 
 /**
@@ -13,11 +13,9 @@ import me.alex.engine.base.BaseFragment
  * <p>
  * ================================================
  */
-class D2Fragment : BaseFragment<FragmentD2Binding>() {
-
-    override fun initView() {
+class APP : BaseApp() {
+    override fun init() {
+        LOG.I("APP init")
     }
 
-    override fun initData() {
-    }
 }

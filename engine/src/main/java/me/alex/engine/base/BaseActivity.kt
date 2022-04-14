@@ -1,8 +1,7 @@
-package me.alex.engine.baseUI
+package me.alex.engine.base
 
 import android.content.Context
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewbinding.ViewBinding
 import com.dylanc.viewbinding.base.ViewBindingUtil
