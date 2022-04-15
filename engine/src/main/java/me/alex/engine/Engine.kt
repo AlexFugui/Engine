@@ -20,4 +20,9 @@ object Engine {
      * 设置默认log Tag
      */
     var logTag = "Engine"
+
+    /**
+     * 除了logTag还可以自定义一个tag在msg中 默认为空
+     */
+    var msgTag = ""
 }

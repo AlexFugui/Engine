@@ -14,9 +14,18 @@
  * limitations under the License.
  */
 
-package me.alex.engine.request
+package me.alex.engine.converter
 
-enum class Method {
-    GET, HEAD, OPTIONS, TRACE, // Url request
-    POST, DELETE, PUT, PATCH // Body request
+import com.drake.net.convert.JSONConvert
+import com.google.gson.GsonBuilder
+import java.lang.reflect.Type
+
+class GsonConverter : JSONConvert() {
+    companion object {
+        val gson = GsonBuilder().serializeNulls().create()
+    }
+
+    override fun <R> String.parseBody(succeed: Type): R? {
+        return gson.fromJson(this, succeed)
+    }
 }

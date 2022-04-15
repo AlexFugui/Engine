@@ -14,23 +14,15 @@
  * limitations under the License.
  */
 
-package com.drake.net.request
+package com.drake.net.sample.converter
 
-open class UrlRequest : BaseRequest() {
+import com.alibaba.fastjson.JSON
+import com.drake.net.convert.JSONConvert
+import java.lang.reflect.Type
 
-    override fun param(name: String, value: String?) {
-        httpUrl.setEncodedQueryParameter(name, value)
-    }
+class FastJsonConverter : JSONConvert(code = "code", message = "msg", success = "0") {
 
-    override fun param(name: String, value: String?, encoded: Boolean) {
-        httpUrl.setQueryParameter(name, value)
-    }
-
-    override fun param(name: String, value: Number?) {
-        httpUrl.setQueryParameter(name, value.toString())
-    }
-
-    override fun param(name: String, value: Boolean?) {
-        httpUrl.setQueryParameter(name, value.toString())
+    override fun <R> String.parseBody(succeed: Type): R? {
+        return JSON.parseObject(this, succeed)
     }
 }

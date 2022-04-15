@@ -2,8 +2,6 @@ package me.alex.engine.interceptor
 
 import android.util.Log
 import com.drake.net.log.LogRecorder
-import com.drake.net.request.label
-import com.drake.net.request.logRecord
 import com.drake.net.request.logString
 import com.drake.net.response.logString
 import me.alex.engine.tag.NetLabel
@@ -75,14 +73,14 @@ open class LogRecordInterceptor(
     /**
      * 请求字符串
      */
-    protected open fun requestString(request: Request): String? {
-        return request.logString(requestByteCount)
+    protected open fun requestString(request: Request): String {
+        return request.logString(requestByteCount)?:""
     }
 
     /**
      * 响应字符串
      */
-    protected open fun responseString(response: Response): String? {
-        return response.logString(responseByteCount)
+    protected open fun responseString(response: Response): String {
+        return response.logString(responseByteCount)?:""
     }
 }

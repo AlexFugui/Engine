@@ -17,39 +17,39 @@ import me.alex.engine.log.LogUtil.getCodeLine
 object LOG {
     private var TAG = Engine.logTag
     private var msgTAG = ""
-    fun I(tag: String, msg: Any) {
+    fun I(tag: String, msg: Any?) {
         if (Engine.isDebug) {
-            Log.i(tag, getCodeLine() + msg.toString())
+            Log.i(tag, msgTAG + getCodeLine() + msg.toString())
         }
     }
 
-    fun I(msg: Any) {
+    fun I(msg: Any?) {
         if (Engine.isDebug) {
-            Log.i(TAG, getCodeLine() + msg.toString())
+            Log.i(TAG, msgTAG + getCodeLine() + msg.toString())
         }
     }
 
-    fun E(tag: String, msg: Any) {
+    fun E(tag: String, msg: Any?) {
         if (Engine.isDebug) {
-            Log.e(tag, getCodeLine() + msg.toString())
+            Log.e(tag, msgTAG + getCodeLine() + msg.toString())
         }
     }
 
-    fun E(msg: Any) {
+    fun E(msg: Any?) {
         if (Engine.isDebug) {
-            Log.e(TAG, getCodeLine() + msg.toString())
+            Log.e(TAG, msgTAG + getCodeLine() + msg.toString())
         }
     }
 
-    fun D(tag: String, msg: Any) {
+    fun D(tag: String, msg: Any?) {
         if (Engine.isDebug) {
-            Log.d(tag, getCodeLine() + msg.toString())
+            Log.d(tag, msgTAG + getCodeLine() + msg.toString())
         }
     }
 
-    fun D(msg: Any) {
+    fun D(msg: Any?) {
         if (Engine.isDebug) {
-            Log.d(TAG, getCodeLine() + msg.toString())
+            Log.d(TAG, msgTAG + getCodeLine() + msg.toString())
         }
     }
 }
