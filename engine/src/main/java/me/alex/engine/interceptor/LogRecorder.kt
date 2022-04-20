@@ -4,8 +4,7 @@ import android.annotation.SuppressLint
 import android.os.*
 import android.util.Log
 import com.drake.net.Net
-import com.drake.net.log.LogRecorder.enabled
-import me.alex.engine.utils.CharacterHandler
+import me.alex.engine.log.utils.CharacterHandler
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -88,7 +87,7 @@ object LogRecorder {
             if (header.length > 2) header = header.substring(1, header.length - 1)
             fastLog(id, MessageType.REQUEST_HEADER, key + HEADER_DELIMITER + SPACE + header)
         }
-        if (body != null) {
+        if (body != null && body.isNotEmpty()) {
             largeLog(id, MessageType.REQUEST_BODY, body)
         }
         fastLog(

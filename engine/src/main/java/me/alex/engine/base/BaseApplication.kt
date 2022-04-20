@@ -12,7 +12,7 @@ import android.app.Application
  * <p>
  * ================================================
  */
-abstract class BaseApp : Application() {
+abstract class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()

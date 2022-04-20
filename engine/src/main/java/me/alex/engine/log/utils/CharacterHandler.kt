@@ -1,4 +1,4 @@
-package me.alex.engine.utils
+package me.alex.engine.log.utils
 
 import android.text.InputFilter
 import android.text.Spanned
@@ -73,14 +73,13 @@ object CharacterHandler {
      * @param json
      * @return
      */
-    fun jsonFormat(json: String): String? {
-        var json = json
+    fun jsonFormat(json: String): String {
         if (TextUtils.isEmpty(json)) {
             return "Empty/Null json content"
         }
-        var message: String
+        var message = ""
         try {
-            json = json.trim { it <= ' ' }
+            val json = json.trim { it <= ' ' }
             message = when {
                 json.startsWith("{") -> {
                     val jsonObject = JSONObject(json)

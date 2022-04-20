@@ -52,5 +52,9 @@ object LOG {
             Log.d(TAG, msgTAG + getCodeLine() + msg.toString())
         }
     }
+
+    fun HttpLog(tag: String, msg: Any?) {
+        Log.d(tag, msg.toString())
+    }
 }
 

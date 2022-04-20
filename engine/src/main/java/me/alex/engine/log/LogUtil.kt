@@ -1,5 +1,6 @@
 package me.alex.engine.log
 
+import okhttp3.MediaType
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -48,6 +49,48 @@ object LogUtil {
             currentTime = ++previousTime
         }
         atomicLong.set(currentTime)
-        return " ${currentTime.toString(Character.MAX_RADIX).uppercase()} "
+        return "${currentTime.toString(Character.MAX_RADIX).uppercase()} "
+    }
+
+
+    /**
+     * 是否可以解析
+     *
+     * @param mediaType [MediaType]
+     * @return `true` 为可以解析
+     */
+    fun isParseAble(mediaType: MediaType?): Boolean {
+        return if (mediaType?.type == null) {
+            false
+        } else isText(mediaType) || isPlain(mediaType)
+                || isJson(mediaType) || isForm(mediaType)
+                || isHtml(mediaType) || isXml(mediaType)
+    }
+
+    fun isText(mediaType: MediaType?): Boolean {
+        return if (mediaType == null) {
+            false
+        } else "text" == mediaType.type
+    }
+
+    fun isPlain(mediaType: MediaType?): Boolean {
+        return mediaType?.subtype?.lowercase(Locale.getDefault())?.contains("plain") ?: false
+    }
+
+    fun isJson(mediaType: MediaType?): Boolean {
+        return mediaType?.subtype?.lowercase(Locale.getDefault())?.contains("json") ?: false
+    }
+
+    fun isXml(mediaType: MediaType?): Boolean {
+        return mediaType?.subtype?.lowercase(Locale.getDefault())?.contains("xml") ?: false
+    }
+
+    fun isHtml(mediaType: MediaType?): Boolean {
+        return mediaType?.subtype?.lowercase(Locale.getDefault())?.contains("html") ?: false
+    }
+
+    fun isForm(mediaType: MediaType?): Boolean {
+        return mediaType?.subtype?.lowercase(Locale.getDefault())?.contains("x-www-form-urlencoded")
+            ?: false
     }
 }

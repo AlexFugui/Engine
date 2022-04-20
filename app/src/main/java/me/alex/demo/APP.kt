@@ -2,7 +2,6 @@ package me.alex.demo
 
 import android.app.ProgressDialog
 import com.drake.net.NetConfig
-import com.drake.net.interceptor.LogRecordInterceptor
 import com.drake.net.interceptor.RequestInterceptor
 import com.drake.net.okhttp.setConverter
 import com.drake.net.okhttp.setDialogFactory
@@ -10,7 +9,7 @@ import com.drake.net.okhttp.setLog
 import com.drake.net.okhttp.setRequestInterceptor
 import com.drake.net.request.BaseRequest
 import me.alex.engine.Engine
-import me.alex.engine.base.BaseApp
+import me.alex.engine.base.BaseApplication
 import me.alex.engine.converter.GsonConverter
 import me.alex.engine.interceptor.BaseLogInterceptor
 import me.alex.engine.log.LOG
@@ -26,7 +25,7 @@ import java.util.concurrent.TimeUnit
  * <p>
  * ================================================
  */
-class APP : BaseApp() {
+class APP : BaseApplication() {
     override fun init() {
         LOG.I("APP init")
 
