@@ -17,12 +17,13 @@
 package me.alex.engine.converter
 
 import com.drake.net.convert.JSONConvert
+import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import java.lang.reflect.Type
 
 class GsonConverter : JSONConvert() {
     companion object {
-        val gson = GsonBuilder().serializeNulls().create()
+        val gson: Gson = GsonBuilder().serializeNulls().create()
     }
 
     override fun <R> String.parseBody(succeed: Type): R? {

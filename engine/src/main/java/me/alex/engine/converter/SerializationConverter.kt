@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST", "MemberVisibilityCanBePrivate")
 
-package com.drake.net.sample.converter
+package me.alex.engine.converter
 
 import com.drake.net.NetConfig
 import com.drake.net.convert.NetConverter

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.drake.net.sample.converter
+package me.alex.engine.converter
 
 import com.alibaba.fastjson.JSON
 import com.drake.net.convert.JSONConvert

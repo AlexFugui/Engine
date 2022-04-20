@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-package com.drake.net.sample.converter
+package me.alex.engine.converter
 
 import com.drake.net.convert.JSONConvert
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import java.lang.reflect.Type
 
 class MoshiConverter : JSONConvert(code = "code", message = "msg", success = "0") {
 
     companion object {
-        val moshi = Moshi.Builder().build()
+        val moshi: Moshi = Moshi
+            .Builder()
+            .add(KotlinJsonAdapterFactory())
+            .build()
     }
 
     override fun <R> String.parseBody(succeed: Type): R? {

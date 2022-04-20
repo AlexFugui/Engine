@@ -6,7 +6,7 @@ package me.alex.engine
  * <p>
  * Created by Alex on 2021/12/6
  * <p>
- * Description:
+ * Description: 项目配置
  * <p>
  * ================================================
  */
@@ -29,7 +29,7 @@ object Engine {
     /**
      * HttpLog的Tag
      */
-    var httpLogTag = "HttpLog"
+    var httpLogTag = logTag
 
     /**
      * 网络框架每行最长log长度

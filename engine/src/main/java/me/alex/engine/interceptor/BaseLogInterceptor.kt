@@ -48,6 +48,7 @@ class BaseLogInterceptor(debug: Boolean) : Interceptor {
             try {
                 response = chain.proceed(request)
             } catch (e: Exception) {
+//                throw Exception("请求失败：" + e.message)
                 e.printStackTrace()
             }
             val t2: Long = System.nanoTime()

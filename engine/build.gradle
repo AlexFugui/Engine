@@ -40,14 +40,19 @@ dependencies {
     api "androidx.fragment:fragment-ktx:1.4.1"
     api "androidx.appcompat:appcompat:1.3.1"
     api "androidx.constraintlayout:constraintlayout:2.1.1"
+
+    //NET
     api "com.github.liangjingkanji:Net:3.2.0" // 网络请求.异步任务
     api "com.squareup.okhttp3:okhttp:4.9.1"
+
+    //ViewBinding
     api "com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-base:2.0.5"
     api 'com.github.DylanCaiCoding.Longan:longan:1.0.5'
     // Optional
     api 'com.github.DylanCaiCoding.Longan:longan-design:1.0.5'
 
-    // ------------------------------JSON解析-------------------------------------
+    //JSON解析
+    api "com.squareup.moshi:moshi:1.8.0"
     api "com.squareup.moshi:moshi-kotlin:1.8.0"
 //    kapt "com.squareup.moshi:moshi-kotlin-codegen:1.8.0"
     api 'com.google.code.gson:gson:2.8.9'

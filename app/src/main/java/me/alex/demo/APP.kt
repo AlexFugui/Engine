@@ -11,6 +11,7 @@ import com.drake.net.request.BaseRequest
 import me.alex.engine.Engine
 import me.alex.engine.base.BaseApplication
 import me.alex.engine.converter.GsonConverter
+import me.alex.engine.converter.MoshiConverter
 import me.alex.engine.interceptor.BaseLogInterceptor
 import me.alex.engine.log.LOG
 import java.util.concurrent.TimeUnit
@@ -30,9 +31,14 @@ class APP : BaseApplication() {
         LOG.I("APP init")
 
         Engine.apply {
-            isDebug = true
+            //调试模式
+            isDebug = BuildConfig.DEBUG
+            //日志log tag
             logTag = "LogTag"
+            //额外的logTag 方便多人开发添加自己或固定位置的tag
             msgTag = "MsgTag"
+            //网络请求日志tag 默认和logTag一致
+            httpLogTag = "AlexHttp"
         }
 
         NetConfig.initialize("https://www.secxiot.top:9000/consumer/deviceApp/da/") {
@@ -51,7 +57,7 @@ class APP : BaseApplication() {
                 }
             })
 
-            setConverter(GsonConverter()) // 数据转换器
+            setConverter(MoshiConverter()) // 数据转换器
 
             setDialogFactory { // 全局加载对话框
                 ProgressDialog(it).apply {
