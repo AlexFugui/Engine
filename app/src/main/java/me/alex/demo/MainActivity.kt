@@ -24,20 +24,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun initData() {
-        LOG.I("test logger")
         val array = arraySetOf(1, 2, 3) + arraySetOf(4, 5, 6)
         LOG.I(array)
         LOG.I(TestData("狗蛋", 18, Locale.getDefault().country))
 
-
         scopeNetLife {
-            mBinding.mainTxt.text = Get<String>("deviceRegister") {
-                setQuery("deviceId", "SECX238CFCA02139DB")
-                setQuery("cellId", "")
-                setQuery("iccId", "89860455261990047903")
-                setQuery("latitude", "")
-                setQuery("longitude", "")
-            }.await()
             reg = Get<BaseResponse<Reg>>("deviceRegister") {
                 setQuery("deviceId", "SECX238CFCA02139DB")
                 setQuery("cellId", "")
@@ -45,7 +36,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 setQuery("latitude", "")
                 setQuery("longitude", "")
             }.await()
-            LOG.I(reg)
+            LOG.I("reg", reg, reg)
         }
+
+        LOG.I("reg", "msg1", "msg2")
+
+//        LOG.I("reg", reg, reg, reg, reg)
     }
 }

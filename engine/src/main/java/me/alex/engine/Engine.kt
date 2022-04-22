@@ -1,5 +1,7 @@
 package me.alex.engine
 
+import me.alex.engine.log.LOG
+
 
 /**
  * ================================================
@@ -14,25 +16,20 @@ object Engine {
     /**
      * 设置调试模式
      */
-    var isDebug = true
+    var isDebug: Boolean = true
 
     /**
      * 设置默认log Tag
      */
-    var logTag = "Engine"
-
-    /**
-     * 除了logTag还可以自定义一个tag在msg中 默认为空
-     */
-    var msgTag = ""
+    var logTag: String = "Engine"
 
     /**
      * HttpLog的Tag
      */
-    var httpLogTag = logTag
+    var httpLogTag: String = logTag
 
     /**
      * 网络框架每行最长log长度
      */
-    var maxHttpLogSize = 120
+    var maxHttpLogSize: Int = 120
 }

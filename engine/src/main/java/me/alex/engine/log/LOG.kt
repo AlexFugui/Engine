@@ -15,46 +15,48 @@ import me.alex.engine.log.LogUtil.getCodeLine
  * ================================================
  */
 object LOG {
-    private var TAG = Engine.logTag
-    private var msgTAG = ""
-    fun I(tag: String, msg: Any?) {
+
+    private const val RESPONSE_UP_LINE =
+        "┌───────────────────────────────────────────────────────────────────────────────────────"
+    private const val CENTER_LINE = "├ "
+    private const val END_LINE =
+        "└───────────────────────────────────────────────────────────────────────────────────────"
+
+    fun I(vararg msg: Any?) {
         if (Engine.isDebug) {
-            Log.i(tag, msgTAG + getCodeLine() + msg.toString())
+            Log.i(Engine.logTag, RESPONSE_UP_LINE)
+            Log.i(Engine.logTag, CENTER_LINE + getCodeLine())
+            for (i in msg.indices) {
+                Log.i(Engine.logTag, "$CENTER_LINE msg${i + 1} : " + msg[i].toString())
+            }
+            Log.i(Engine.logTag, END_LINE)
         }
     }
 
-    fun I(msg: Any?) {
+    fun E(vararg msg: Any?) {
         if (Engine.isDebug) {
-            Log.i(TAG, msgTAG + getCodeLine() + msg.toString())
+            Log.e(Engine.logTag, RESPONSE_UP_LINE)
+            Log.e(Engine.logTag, CENTER_LINE + getCodeLine())
+            for (i in msg.indices) {
+                Log.e(Engine.logTag, "$CENTER_LINE msg${i + 1} : " + msg[i].toString())
+            }
+            Log.e(Engine.logTag, END_LINE)
         }
     }
 
-    fun E(tag: String, msg: Any?) {
+    fun D(vararg msg: Any?) {
         if (Engine.isDebug) {
-            Log.e(tag, msgTAG + getCodeLine() + msg.toString())
+            Log.d(Engine.logTag, RESPONSE_UP_LINE)
+            Log.d(Engine.logTag, CENTER_LINE + getCodeLine())
+            for (i in msg.indices) {
+                Log.d(Engine.logTag, "$CENTER_LINE msg${i + 1} : " + msg[i].toString())
+            }
+            Log.d(Engine.logTag, END_LINE)
         }
     }
 
-    fun E(msg: Any?) {
-        if (Engine.isDebug) {
-            Log.e(TAG, msgTAG + getCodeLine() + msg.toString())
-        }
-    }
-
-    fun D(tag: String, msg: Any?) {
-        if (Engine.isDebug) {
-            Log.d(tag, msgTAG + getCodeLine() + msg.toString())
-        }
-    }
-
-    fun D(msg: Any?) {
-        if (Engine.isDebug) {
-            Log.d(TAG, msgTAG + getCodeLine() + msg.toString())
-        }
-    }
-
-    fun HttpLog(tag: String, msg: Any?) {
-        Log.d(tag, msg.toString())
+    fun httpLog(tag: String, msg: Any?) {
+        Log.i(tag, msg.toString())
     }
 }
 

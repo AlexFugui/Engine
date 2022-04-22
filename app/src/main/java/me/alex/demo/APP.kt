@@ -10,7 +10,6 @@ import com.drake.net.okhttp.setRequestInterceptor
 import com.drake.net.request.BaseRequest
 import me.alex.engine.Engine
 import me.alex.engine.base.BaseApplication
-import me.alex.engine.converter.GsonConverter
 import me.alex.engine.converter.MoshiConverter
 import me.alex.engine.interceptor.BaseLogInterceptor
 import me.alex.engine.log.LOG
@@ -35,8 +34,6 @@ class APP : BaseApplication() {
             isDebug = BuildConfig.DEBUG
             //日志log tag
             logTag = "LogTag"
-            //额外的logTag 方便多人开发添加自己或固定位置的tag
-            msgTag = "MsgTag"
             //网络请求日志tag 默认和logTag一致
             httpLogTag = "AlexHttp"
         }

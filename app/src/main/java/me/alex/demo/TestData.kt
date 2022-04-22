@@ -14,7 +14,7 @@ import org.json.JSONObject
  */
 data class TestData(val name: String, val age: Int, val address: String) {
     override fun toString(): String {
-        return "TestData : \n" +
+        return "TestData : " +
                 JSONObject().apply {
                     put("name", name)
                     put("age", age)

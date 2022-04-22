@@ -1,5 +1,6 @@
 package me.alex.engine.log
 
+import android.util.Log
 import okhttp3.MediaType
 import java.text.DateFormat
 import java.text.SimpleDateFormat
@@ -31,6 +32,9 @@ object LogUtil {
             stackTraceElements[4].let {
                 stackStr += "[ ${it.methodName} ] (${it.fileName}:${it.lineNumber}) \n"
             }
+//            for (stackTraceElement in stackTraceElements) {
+//                Log.i("LogUtil", "stackTraceElement: ${stackTraceElement.methodName}")
+//            }
         }
         return stackStr
     }
