@@ -1,5 +1,6 @@
 package me.alex.engine.log.httpLog
 
+import android.net.Uri
 import android.text.TextUtils.isEmpty
 import me.alex.engine.Engine
 import me.alex.engine.log.LOG
@@ -19,7 +20,6 @@ import okhttp3.Request
  * ================================================
  */
 object HttpLog {
-    private val TAG = "ArmsHttpLog"
     private val LINE_SEPARATOR = System.getProperty("line.separator")
     private val DOUBLE_SEPARATOR = LINE_SEPARATOR + LINE_SEPARATOR
 
@@ -51,7 +51,7 @@ object HttpLog {
             LINE_SEPARATOR + BODY_TAG + LINE_SEPARATOR + bodyString
 
         LOG.httpLog(tag, REQUEST_UP_LINE)
-        logLines(tag, arrayOf(URL_TAG + request.url), false)
+        logLines(tag, arrayOf(URL_TAG + request.url.host.split("?")[0]), false)
         logLines(tag, getRequest(request), true)
         logLines(tag, requestBody.split(LINE_SEPARATOR).toTypedArray(), true)
         LOG.httpLog(tag, END_LINE)
@@ -59,7 +59,11 @@ object HttpLog {
 
     fun printFileRequest(tag: String, request: Request) {
         LOG.httpLog(tag, REQUEST_UP_LINE)
-        logLines(tag, arrayOf(URL_TAG + request.url), false)
+        val url: String =
+            if (request.url.toString().split("?")
+                    .isNotEmpty()
+            ) request.url.toString().split("?")[0] else request.url.toString()
+        logLines(tag, arrayOf(URL_TAG + url), false)
         logLines(tag, getRequest(request), true)
         logLines(tag, OMITTED_REQUEST, true);
         LOG.httpLog(tag, END_LINE)
@@ -141,9 +145,7 @@ object HttpLog {
         val header = request.headers.toString()
         log =
             METHOD_TAG + request.method + DOUBLE_SEPARATOR +
-                    if (isEmpty(header)) "" else HEADERS_TAG + LINE_SEPARATOR + dotHeaders(
-                        header
-                    )
+                    if (isEmpty(header)) "" else HEADERS_TAG + LINE_SEPARATOR + dotHeaders(header)
         return log.split(LINE_SEPARATOR as String).toTypedArray()
     }
 
