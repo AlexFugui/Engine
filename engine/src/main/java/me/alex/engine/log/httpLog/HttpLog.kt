@@ -26,24 +26,24 @@ object HttpLog {
     private val OMITTED_RESPONSE = arrayOf(LINE_SEPARATOR, "Omitted response body")
     private val OMITTED_REQUEST = arrayOf(LINE_SEPARATOR, "Omitted request body")
 
-    private val N = "\n"
+    private const val N = "\n"
     private val T = "\t"
-    private val REQUEST_UP_LINE =
+    private const val REQUEST_UP_LINE =
         "┌────── Request ────────────────────────────────────────────────────────────────────────"
-    private val RESPONSE_UP_LINE =
+    private const val RESPONSE_UP_LINE =
         "┌────── Response ───────────────────────────────────────────────────────────────────────"
-    private val END_LINE =
+    private const val END_LINE =
         "└───────────────────────────────────────────────────────────────────────────────────────"
-    private val BODY_TAG = "Body:"
-    private val URL_TAG = "URL: "
-    private val METHOD_TAG = "Method: @"
-    private val HEADERS_TAG = "Headers:"
-    private val STATUS_CODE_TAG = "Status Code: "
-    private val RECEIVED_TAG = "Received in: "
-    private val CORNER_UP = "┌ "
-    private val CORNER_BOTTOM = "└ "
-    private val CENTER_LINE = "├ "
-    private val DEFAULT_LINE = "│ "
+    private const val BODY_TAG = "Body:"
+    private const val URL_TAG = "URL: "
+    private const val METHOD_TAG = "Method: @"
+    private const val HEADERS_TAG = "Headers:"
+    private const val STATUS_CODE_TAG = "Status Code: "
+    private const val RECEIVED_TAG = "Received in: "
+    private const val CORNER_UP = "┌ "
+    private const val CORNER_BOTTOM = "└ "
+    private const val CENTER_LINE = "├ "
+    private const val DEFAULT_LINE = "│ "
 
 
     fun printJsonRequest(tag: String, request: Request, bodyString: String) {
