@@ -30,7 +30,8 @@ object LogUtil {
             stackStr += ""
         } else {
             stackTraceElements[4].let {
-                stackStr += "[ ${it.methodName} ] (${it.fileName}:${it.lineNumber}) \n"
+//                stackStr += "[${it.methodName}]  (${it.fileName}:${it.lineNumber}) \n"
+                stackStr += "(${it.fileName}:${it.lineNumber}) \n"
             }
 //            for (stackTraceElement in stackTraceElements) {
 //                Log.i("LogUtil", "stackTraceElement: ${stackTraceElement.methodName}")

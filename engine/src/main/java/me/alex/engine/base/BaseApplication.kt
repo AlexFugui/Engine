@@ -1,6 +1,7 @@
 package me.alex.engine.base
 
 import android.app.Application
+import android.content.Context
 
 
 /**
@@ -13,9 +14,11 @@ import android.app.Application
  * ================================================
  */
 abstract class BaseApplication : Application() {
+    protected lateinit var me: Context
 
     override fun onCreate() {
         super.onCreate()
+        me = this
         init()
     }
 

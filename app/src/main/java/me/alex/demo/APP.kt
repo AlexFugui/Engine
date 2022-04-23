@@ -3,13 +3,13 @@ package me.alex.demo
 import android.app.ProgressDialog
 import com.drake.net.NetConfig
 import com.drake.net.interceptor.RequestInterceptor
-import com.drake.net.okhttp.setConverter
-import com.drake.net.okhttp.setDialogFactory
-import com.drake.net.okhttp.setLog
-import com.drake.net.okhttp.setRequestInterceptor
+import com.drake.net.okhttp.*
 import com.drake.net.request.BaseRequest
+import com.kongzue.dialogx.DialogX
+import com.kongzue.dialogx.dialogs.WaitDialog
 import me.alex.engine.Engine
 import me.alex.engine.base.BaseApplication
+import me.alex.engine.converter.GsonConverter
 import me.alex.engine.converter.MoshiConverter
 import me.alex.engine.interceptor.BaseLogInterceptor
 import me.alex.engine.log.LOG
@@ -27,18 +27,18 @@ import java.util.concurrent.TimeUnit
  */
 class APP : BaseApplication() {
     override fun init() {
-        LOG.I("APP init")
-
+        DialogX.init(me)
         Engine.apply {
             //调试模式
             isDebug = BuildConfig.DEBUG
             //日志log tag
-            logTag = "LogTag"
+            logTag = "Engine"
             //网络请求日志tag 默认和logTag一致
-            httpLogTag = "AlexHttp"
+            httpLogTag = "Engine"
         }
 
-        NetConfig.initialize("https://www.secxiot.top:9000/consumer/deviceApp/da/") {
+        NetConfig.initialize("https://www.wanandroid.com/") {
+            trustSSLCertificate() // 信任所有证书
 
             // 超时设置
             connectTimeout(30, TimeUnit.SECONDS)
@@ -54,11 +54,11 @@ class APP : BaseApplication() {
                 }
             })
 
-            setConverter(MoshiConverter()) // 数据转换器
+            setConverter(GsonConverter()) // 数据转换器
 
             setDialogFactory { // 全局加载对话框
                 ProgressDialog(it).apply {
-                    setMessage("我是全局自定义的加载对话框...")
+                    setMessage("加载中...")
                 }
             }
         }

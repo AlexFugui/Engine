@@ -1,6 +1,7 @@
 package me.alex.engine.interceptor
 
 import me.alex.engine.Engine
+import me.alex.engine.log.LOG
 import me.alex.engine.log.httpLog.HttpLog
 import me.alex.engine.log.httpLog.HttpLog.printFileResponse
 import me.alex.engine.log.httpLog.HttpLog.printJsonResponse
@@ -31,26 +32,29 @@ class BaseLogInterceptor(debug: Boolean) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
+
         if (isDebug) {//调试模式下 打印信息
             //计算唯一id
             val tag = Engine.httpLogTag + " - " + LogUtil.getGenId()
-            //打印请求信息
-            if (request.body != null && LogUtil.isParseAble(request.body!!.contentType())) {
-                HttpLog.printJsonRequest(tag, request, parseParams(request)!!)
-            } else {
-                HttpLog.printFileRequest(tag, request)
+
+            if (request.method == "GET") {
+                HttpLog.printGetRequest(tag, request)
             }
+            if (request.method == "POST") {
+                LOG.I(request.method + "请求")
+            }
+//            //打印请求信息
+//            if (request.body != null && LogUtil.isParseAble(request.body!!.contentType())) {
+//                HttpLog.printJsonRequest(tag, request, parseParams(request)!!)
+//            } else {
+//                HttpLog.printFileRequest(tag, request)
+//            }
 
 
             //打印响应信息
             val t1: Long = System.nanoTime()
-            lateinit var response: Response
-            try {
-                response = chain.proceed(request)
-            } catch (e: Exception) {
-//                throw Exception("请求失败：" + e.message)
-                e.printStackTrace()
-            }
+            val response: Response = chain.proceed(request)
+
             val t2: Long = System.nanoTime()
             val responseBody: ResponseBody? = response.body
             var bodyString: String? = ""
